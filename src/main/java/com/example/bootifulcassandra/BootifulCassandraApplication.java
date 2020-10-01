@@ -58,7 +58,8 @@ public class BootifulCassandraApplication {
 
 	@Bean
 	CqlSessionBuilderCustomizer cqlSessionBuilderCustomizer(@Value("${cassandra.secure-connect-bundle}") File file) {
-		Assert.isTrue(file.exists() , ()-> "specify a file path for the cassandra.secure-connect-bundle property. It should point to the ");
+		Assert.isTrue(file.exists() , ()-> "specify a file path for the cassandra.secure-connect-bundle property. It should point to the secure connection " +
+				"bundle that you can downlaod from the astra.datastax.com portal in Dashboard -> Databases -> `bootiful` -> Connect. Then, choose Driver and it'll let you download a `Secure Connect Bundle` ");
 		return cqlSessionBuilder -> cqlSessionBuilder.withCloudSecureConnectBundle(file.toPath());
 	}
 
