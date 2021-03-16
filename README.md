@@ -28,7 +28,7 @@ CREATE TABLE IF NOT EXISTS starter_orders (
 
 ```bash
 git clone https://github.com/clun/astra-sdk-java.git
-cd stra-sdk-java
+cd astra-sdk-java
 mvn clean install -Dmaven.test.skip=true
 ```
 
