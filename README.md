@@ -3,9 +3,11 @@
 
 ## 1. Setup ASTRA
 
-- Create an Astra Instance
+- [Create an Astra Instance](https://docs.datastax.com/en/astra/docs/creating-your-astra-database.html)
 
 - Create the Table
+
+Once the database is ready go to CQLConsole and create the table
 
 ```sql
 CREATE TABLE IF NOT EXISTS starter_orders (
@@ -19,8 +21,7 @@ CREATE TABLE IF NOT EXISTS starter_orders (
  ) WITH CLUSTERING ORDER BY (product_id DESC);
 ```
 
-- Create a token
-
+- [Create an token](https://docs.datastax.com/en/astra/docs/manage-application-tokens.html) with role `Databse administrator`
 
 ## 2. Build ASTRA SDK
 
@@ -45,14 +46,9 @@ astra.keyspace=bootiful
 
 ## 4. Run TESTS
 
+- Open this application in an IDE
 
-- Start working with `AstraClientTest`
-
-```java
-should_list_available_db()
-```
-
-- Now notice in the `pom.xml`
+- Open `pom.xml` and check reference to the spring boot starter
 
 ```xml
 <dependency>
@@ -60,6 +56,21 @@ should_list_available_db()
   <artifactId>astra-spring-boot-starter</artifactId>
   <version>2021.1-SNAPSHOT</version>
 </dependency>
+```
+
+- Start working with `AstraClientTest`
+
+```java
+should_list_available_db()
+should_create_new_serverless_db()
+should_create_cqlSession()
+```
+
+- Back to the Astra UI create a new KEYSPACE `namespace1`
+
+- Update code to provide namespace name 
+```java
+should_use_documentAPI()
 ```
 
 - Run the Application
