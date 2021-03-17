@@ -1,10 +1,10 @@
-package com.example.bootifulcassandra;
+package com.example.bc1;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class BootifulCassandraApplicationTests {
+class Bc1ApplicationTests {
 
 	@Test
 	void contextLoads() {
