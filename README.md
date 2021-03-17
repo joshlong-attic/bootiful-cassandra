@@ -30,8 +30,19 @@ CREATE TABLE IF NOT EXISTS starter_orders (
 git clone https://github.com/clun/astra-sdk-java.git
 cd astra-sdk-java
 mvn clean install -Dmaven.test.skip=true
+
 ```
 
+Then add the SDK client to the pom.xmlL
+
+```
+<dependency>
+    <groupId>com.datastax.astra</groupId>
+    <artifactId>astra-spring-boot-starter</artifactId>
+    <version>2021.1-SNAPSHOT</version>
+</dependency>
+
+```
 
 ## 3. Setup your application
 
