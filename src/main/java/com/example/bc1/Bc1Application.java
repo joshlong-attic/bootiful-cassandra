@@ -72,12 +72,20 @@ public class Bc1Application {
 				.take(1)
 				.flatMap(repository::findByCustomerId);
 
+			Flux<CustomerOrders> updates = updates();
+
 			delete
 				.thenMany(writes)
+				.thenMany(updates)
 				.thenMany(repoById.doOnNext(co -> System.out.println("BY ID: " + co.toString())))
 				.thenMany(cql.doOnNext(co -> System.out.println("CQL: " + co.toString())))
 				.subscribe();
 		};
+	}
+
+	Flux<CustomerOrders> updates() {
+		// todo: read some data. update it. then read the same data again. then write the first one. then try to write the second one.
+		return Flux.empty();
 	}
 
 
