@@ -18,6 +18,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.core.annotation.Order;
 import org.springframework.dao.DataAccessException;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.annotation.Version;
 import org.springframework.data.cassandra.ReactiveSession;
 import org.springframework.data.cassandra.ReactiveSessionFactory;
 import org.springframework.data.cassandra.core.cql.*;
@@ -104,8 +105,8 @@ public class Bc1Application {
 
 	Flux<CustomerOrders> cqlTemplate(ReactiveCqlTemplate template) {
 		return template
-			.query("select * from orders_by_customer ", (row, i) ->
-				new CustomerOrders(row.getUuid("customer_id"), row.getUuid("order_id"), row.getString("customer_name")));
+			.query("select * from orders_by_customer ",
+				(row, i) -> new CustomerOrders(row.getUuid("customer_id"), row.getUuid("order_id"), row.getString("customer_name")));
 	}
 
 	private void documents(AstraClient ac) {
@@ -166,13 +167,13 @@ class CustomerOrders {
 	@Column("customer_name")
 	private String name;
 
+//	@Version
+//	private Integer version  ;
+
 }
 
 
 interface CustomerOrdersRepository extends ReactiveCassandraRepository<CustomerOrders, CustomerOrdersPrimaryKey> {
-
-
-	Flux<CustomerOrders> findByName(String name);
 
 	Flux<CustomerOrders> findByCustomerId(UUID customerId);
 }
